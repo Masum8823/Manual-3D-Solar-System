@@ -262,3 +262,37 @@ The project now contains:
 - Custom 3D Saturn ring
 - Planetary transformations
 - Continuous animation
+---
+
+## Step 08 — Planet Names / 3D Text
+
+In this step, text labels were added to identify the planets.
+
+### Concepts Learned
+
+- 3D text positioning
+- `glRasterPos3f()`
+- `glutBitmapCharacter()`
+- Character-by-character text rendering
+- Passing strings to functions
+- Boolean visibility control
+
+### Text System
+
+A reusable `drawText()` function was created to display text at a specific 3D world position.
+
+Each planet now receives its name as a function parameter.
+
+### Current Progress
+
+The project now contains:
+
+- Custom 3D sphere
+- Eight animated planets
+- Manual orbital paths
+- Central Sun
+- Custom Saturn ring
+- Planet names
+- Rotation
+- Translation
+- Continuous animation
