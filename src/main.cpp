@@ -803,6 +803,141 @@ void reshape(
     );
 }
 
+// =====================================================
+// LIGHTING
+// =====================================================
+
+void initLighting()
+{
+    glEnable(
+        GL_LIGHTING
+    );
+
+    glEnable(
+        GL_LIGHT0
+    );
+
+    glEnable(
+        GL_COLOR_MATERIAL
+    );
+
+    glColorMaterial(
+        GL_FRONT,
+        GL_AMBIENT_AND_DIFFUSE
+    );
+
+
+    // =================================================
+    // LIGHT POSITION
+    // =================================================
+
+    GLfloat lightPosition[] =
+    {
+        0.0f,
+        0.0f,
+        0.0f,
+        1.0f
+    };
+
+    glLightfv(
+        GL_LIGHT0,
+        GL_POSITION,
+        lightPosition
+    );
+
+
+    // =================================================
+    // AMBIENT LIGHT
+    // =================================================
+
+    GLfloat ambient[] =
+    {
+        0.16f,
+        0.16f,
+        0.16f,
+        1.0f
+    };
+
+    glLightfv(
+        GL_LIGHT0,
+        GL_AMBIENT,
+        ambient
+    );
+
+
+    // =================================================
+    // DIFFUSE LIGHT
+    // =================================================
+
+    GLfloat diffuse[] =
+    {
+        1.0f,
+        0.85f,
+        0.55f,
+        1.0f
+    };
+
+    glLightfv(
+        GL_LIGHT0,
+        GL_DIFFUSE,
+        diffuse
+    );
+
+
+    // =================================================
+    // SPECULAR LIGHT
+    // =================================================
+
+    GLfloat specular[] =
+    {
+        1.0f,
+        0.95f,
+        0.80f,
+        1.0f
+    };
+
+    glLightfv(
+        GL_LIGHT0,
+        GL_SPECULAR,
+        specular
+    );
+
+
+    // =================================================
+    // MATERIAL
+    // =================================================
+
+    GLfloat materialSpecular[] =
+    {
+        0.75f,
+        0.75f,
+        0.75f,
+        1.0f
+    };
+
+    glMaterialfv(
+        GL_FRONT,
+        GL_SPECULAR,
+        materialSpecular
+    );
+
+
+    GLfloat shininess[] =
+    {
+        40.0f
+    };
+
+    glMaterialfv(
+        GL_FRONT,
+        GL_SHININESS,
+        shininess
+    );
+
+
+    glEnable(
+        GL_NORMALIZE
+    );
+}
 
 // =====================================================
 // 12. INITIALIZATION
@@ -813,6 +948,8 @@ void init()
     glEnable(
         GL_DEPTH_TEST
     );
+
+    initLighting();
 
     glClearColor(
         0.0f,
