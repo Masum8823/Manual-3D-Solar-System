@@ -5,6 +5,13 @@
 
 #define PI 3.14159265358979323846
 
+// =====================================================
+// GLOBAL VARIABLES
+// =====================================================
+
+float orbitAngle = 0.0f;
+float orbitSpeed = 0.5f;
+
 
 // =====================================================
 // 1. CUSTOM SPHERE
@@ -116,7 +123,59 @@ void drawManualOrbit(float radius)
 
 
 // =====================================================
-// 3. SUN
+// 3. PLANET TRANSFORMATION SYSTEM
+// Rotation + Translation
+// =====================================================
+
+void drawPlanetManual(
+    float distance,
+    float size,
+    float red,
+    float green,
+    float blue,
+    float speed
+)
+{
+    // Orbit path
+    drawManualOrbit(distance);
+
+    glPushMatrix();
+
+    // ROTATION
+    glRotatef(
+        orbitAngle * speed,
+        0.0f,
+        1.0f,
+        0.0f
+    );
+
+    // TRANSLATION
+    glTranslatef(
+        distance,
+        0.0f,
+        0.0f
+    );
+
+    // Planet color
+    glColor3f(
+        red,
+        green,
+        blue
+    );
+
+    // Planet sphere
+    drawCustomSphere(
+        size,
+        20,
+        20
+    );
+
+    glPopMatrix();
+}
+
+
+// =====================================================
+// 4. SUN
 // =====================================================
 
 void drawSun()
@@ -140,7 +199,7 @@ void drawSun()
 
 
 // =====================================================
-// 4. DISPLAY
+// 5. DISPLAY
 // =====================================================
 
 void display()
@@ -153,20 +212,45 @@ void display()
     // Sun
     drawSun();
 
-
-    // Orbital paths
-    drawManualOrbit(8.0f);
-    drawManualOrbit(12.0f);
-    drawManualOrbit(16.0f);
-    drawManualOrbit(20.0f);
-
+    // Planet
+    drawPlanetManual(
+        8.0f,
+        0.5f,
+        0.7f,
+        0.7f,
+        0.7f,
+        4.0f
+    );
 
     glutSwapBuffers();
 }
 
 
 // =====================================================
-// 5. INITIALIZATION
+// 6. CONTINUOUS ANIMATION
+// =====================================================
+
+void update(int value)
+{
+    orbitAngle += orbitSpeed;
+
+    if (orbitAngle > 100000.0f)
+    {
+        orbitAngle -= 100000.0f;
+    }
+
+    glutPostRedisplay();
+
+    glutTimerFunc(
+        20,
+        update,
+        0
+    );
+}
+
+
+// =====================================================
+// 7. INITIALIZATION
 // =====================================================
 
 void init()
@@ -185,7 +269,7 @@ void init()
 
 
 // =====================================================
-// 6. MAIN
+// 8. MAIN
 // =====================================================
 
 int main(
@@ -217,6 +301,12 @@ int main(
 
     glutDisplayFunc(
         display
+    );
+
+    glutTimerFunc(
+        0,
+        update,
+        0
     );
 
     glutMainLoop();
