@@ -496,3 +496,66 @@ The project now contains:
 - Continuous animation
 
 ---
+
+## Step 13 — Lighting and Material System
+
+In this step, OpenGL lighting and material properties were added to create a more realistic 3D appearance.
+
+### Concepts Learned
+
+- OpenGL lighting
+- Light source
+- Ambient light
+- Diffuse light
+- Specular light
+- Material properties
+- Surface normals
+- Shininess
+- `GL_LIGHTING`
+- `GL_LIGHT0`
+- `GL_COLOR_MATERIAL`
+- `GL_NORMALIZE`
+
+### Lighting Components
+
+The project uses three main lighting components:
+
+1. Ambient
+2. Diffuse
+3. Specular
+
+### Material
+
+A specular material and shininess value were added to the objects.
+
+```cpp
+glMaterialfv(GL_FRONT, GL_SPECULAR, materialSpecular);
+glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
+```
+
+### Surface Normals
+
+The custom sphere already calculates surface normals using `glNormal3f()`.
+
+These normals are now used by the lighting system to calculate the shading of the planets.
+
+### Current Progress
+
+The project now contains:
+
+- Custom 3D sphere
+- Surface normals
+- Eight animated planets
+- Manual orbital paths
+- Central Sun
+- Sun glow
+- Scaling transformation
+- Mirroring transformation
+- Custom Saturn ring
+- Planet names
+- 3D camera
+- Manual perspective projection
+- Background star field
+- Lighting
+- Material properties
+- Continuous animation
