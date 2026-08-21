@@ -387,3 +387,26 @@ The project now contains:
 - Manual perspective projection
 - Background star field
 - Continuous animation
+
+---
+
+## Step 11 — Sun Glow and Scaling Transformation
+
+In this step, a glowing effect was added to the Sun using transparency and scaling transformation.
+
+### Concepts Learned
+
+- Scaling transformation
+- `glScalef()`
+- Alpha blending
+- Transparency
+- `GL_BLEND`
+- `glBlendFunc()`
+- Matrix stack using `glPushMatrix()` and `glPopMatrix()`
+
+### Scaling
+
+The glow sphere is scaled using:
+
+```cpp
+glScalef(1.35f, 1.35f, 1.35f);
