@@ -630,3 +630,80 @@ The project now contains:
 - Animation speed control
 - Reset functionality
 - Continuous animation
+
+---
+
+## Step 15 — Interactive Control Panel and 2D HUD
+
+In this step, a 2D control panel was added on top of the 3D solar system scene.
+
+### Concepts Learned
+
+- 2D HUD over a 3D scene
+- Orthographic projection
+- `glOrtho()`
+- Screen-space coordinates
+- Matrix stack management
+- `glPushMatrix()`
+- `glPopMatrix()`
+- Alpha blending
+- 2D text rendering
+- Switching between 3D and 2D rendering
+
+### HUD System
+
+The control panel uses an orthographic projection:
+
+```cpp
+glOrtho(0, 1200, 0, 750, -1, 1);
+```
+
+This allows the interface to use fixed screen coordinates.
+
+### Rendering Process
+
+The application first renders the complete 3D solar system.Then it temporarily switches to 2D projection and renders the control panel.
+After that, the original rendering state is restored.
+
+### Control Panel Information
+
+The panel displays:
+
+- Camera controls
+- Zoom controls
+- Animation speed
+- Planet name toggle
+- Reset command
+- Project information
+- Transformation concepts
+- Student IDs
+
+
+### Current Progress
+
+The project now contains:
+
+- Custom 3D sphere
+- Surface normals
+- Eight animated planets
+- Manual orbital paths
+- Central Sun
+- Sun glow
+- Scaling transformation
+- Mirroring transformation
+- Custom Saturn ring
+- Planet names
+- 3D camera
+- Manual perspective projection
+- Background star field
+- Lighting
+- Material properties
+- Interactive keyboard controls
+- Camera movement and zoom
+- Animation speed control
+- Reset functionality
+- 2D control panel / HUD
+- Screen-space text rendering
+- Continuous animation
+
+---
