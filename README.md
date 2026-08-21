@@ -146,3 +146,45 @@ The project now contains:
 The project is now prepared for adding moving planetary objects.
 
 ---
+
+## Step 05 — Planetary Transformation System
+
+In this step, a reusable planetary transformation system was introduced.
+
+A planet was placed at a specific distance from the Sun and animated using rotation and translation.
+
+### Concepts Learned
+
+- `glPushMatrix()`
+- `glPopMatrix()`
+- Translation
+- Rotation
+- Transformation order
+- Matrix stack
+- Reusable object functions
+- Continuous animation
+- GLUT timer callback
+
+### Transformation
+
+The planet uses:
+
+1. Rotation around the Y-axis
+2. Translation away from the Sun
+
+The combination of these transformations creates orbital movement.
+
+### Current Progress
+
+The project now contains:
+
+- Custom 3D sphere
+- Manual orbital path
+- Central Sun
+- One animated planet
+- Rotation
+- Translation
+- Matrix stack
+- Continuous animation
+
+---
