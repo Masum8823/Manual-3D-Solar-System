@@ -745,6 +745,12 @@ void display()
 
     drawReflection();
 
+    // =================================================
+    // CONTROL PANEL
+    // =================================================
+
+    drawControls();
+
     glutSwapBuffers();
 }
 
@@ -946,6 +952,58 @@ void keyboard(
     glutPostRedisplay();
 }
 
+
+// =====================================================
+// SCREEN TEXT
+// =====================================================
+
+void drawScreenText(
+    const char* text,
+    float x,
+    float y
+)
+{
+    glRasterPos2f(
+        x,
+        y
+    );
+
+    for (int i = 0;
+         text[i] != '\0';
+         i++)
+    {
+        glutBitmapCharacter(
+            GLUT_BITMAP_HELVETICA_12,
+            text[i]
+        );
+    }
+}
+
+// =====================================================
+// SCREEN TEXT
+// =====================================================
+
+void drawScreenText(
+    const char* text,
+    float x,
+    float y
+)
+{
+    glRasterPos2f(
+        x,
+        y
+    );
+
+    for (int i = 0;
+         text[i] != '\0';
+         i++)
+    {
+        glutBitmapCharacter(
+            GLUT_BITMAP_HELVETICA_12,
+            text[i]
+        );
+    }
+}
 
 // =====================================================
 // 11. RESHAPE
