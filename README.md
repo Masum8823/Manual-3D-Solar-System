@@ -296,3 +296,56 @@ The project now contains:
 - Rotation
 - Translation
 - Continuous animation
+
+---
+
+## Step 09 — 3D Camera and Manual Perspective
+
+In this step, a manual 3D camera system and perspective projection were implemented.
+
+### Concepts Learned
+
+- Camera transformation
+- Camera translation
+- Camera rotation
+- Perspective projection
+- Projection matrix
+- Field of View (FOV)
+- Aspect ratio
+- Near and far clipping planes
+- Viewport
+- Window resizing
+
+### Camera System
+
+The camera uses:
+
+- Zoom distance
+- Horizontal movement
+- Vertical movement
+- Y-axis rotation
+
+### Manual Perspective
+
+Instead of using `gluPerspective()`, the perspective projection matrix was calculated manually.
+
+The basic formula is:
+
+f = 1 / tan(FOV / 2)
+
+The resulting matrix is then loaded into the OpenGL projection matrix.
+
+### Current Progress
+
+The project now contains:
+
+- Custom 3D sphere
+- Eight animated planets
+- Manual orbital paths
+- Central Sun
+- Custom Saturn ring
+- Planet names
+- Camera system
+- Manual perspective projection
+- Depth testing
+- Continuous animation
