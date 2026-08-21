@@ -349,3 +349,41 @@ The project now contains:
 - Manual perspective projection
 - Depth testing
 - Continuous animation
+
+---
+
+## Step 10 — Background Star Field
+
+In this step, a 3D background star field was added to make the solar system scene look more realistic.
+
+### Concepts Learned
+
+- `GL_POINTS`
+- 3D point rendering
+- Generating multiple objects using loops
+- Deterministic object positioning
+- Basic brightness variation
+- Disabling lighting for background objects
+
+### Star System
+
+A total of 450 stars are generated in 3D space.
+
+Each star receives an X, Y, and Z coordinate using mathematical calculations.
+
+The star positions remain consistent every time the program runs.
+
+### Current Progress
+
+The project now contains:
+
+- Custom 3D sphere
+- Eight animated planets
+- Manual orbital paths
+- Central Sun
+- Custom Saturn ring
+- Planet names
+- 3D camera
+- Manual perspective projection
+- Background star field
+- Continuous animation
