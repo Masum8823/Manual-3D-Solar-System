@@ -227,3 +227,38 @@ Each planet is defined using:
 
 The project now contains a complete set of eight animated planets orbiting the central Sun.
 ---
+
+## Step 07 — Custom Saturn Ring
+
+In this step, a custom 3D ring was created for Saturn without using GLUT's built-in torus function.
+
+### Concepts Learned
+
+- Parametric 3D geometry
+- Torus-like surface generation
+- Nested loops for 3D geometry
+- Rotation of child objects
+- Matrix stack
+- Optional object features using Boolean parameters
+
+### Ring Generation
+
+The ring vertices are generated mathematically using:
+
+x = (R + r × cos(φ)) × cos(θ)
+
+y = r × sin(φ)
+
+z = (R + r × cos(φ)) × sin(θ)
+
+### Current Progress
+
+The project now contains:
+
+- Custom 3D sphere
+- Eight animated planets
+- Manual orbital paths
+- Central Sun
+- Custom 3D Saturn ring
+- Planetary transformations
+- Continuous animation
