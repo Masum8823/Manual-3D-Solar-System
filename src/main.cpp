@@ -6,6 +6,12 @@
 #define PI 3.14159265358979323846
 
 // =====================================================
+// FUNCTION PROTOTYPES
+// =====================================================
+
+void drawControls();
+
+// =====================================================
 // GLOBAL VARIABLES
 // =====================================================
 
@@ -455,6 +461,7 @@ void drawSun()
     glEnable(GL_LIGHTING);
 }
 
+
 // =====================================================
 // MIRRORING
 // Scaling -1 on Y-axis
@@ -505,6 +512,7 @@ void drawReflection()
 
     glPopMatrix();
 }
+
 
 // =====================================================
 // 7. CAMERA
@@ -739,11 +747,13 @@ void display()
         "Neptune"
     );
 
+
     // =================================================
     // MIRRORING
     // =================================================
 
     drawReflection();
+
 
     // =================================================
     // CONTROL PANEL
@@ -776,6 +786,7 @@ void update(int value)
         0
     );
 }
+
 
 // =====================================================
 // SPECIAL KEYS
@@ -979,31 +990,325 @@ void drawScreenText(
     }
 }
 
+
 // =====================================================
-// SCREEN TEXT
+// CONTROL PANEL
 // =====================================================
 
-void drawScreenText(
-    const char* text,
-    float x,
-    float y
-)
+void drawControls()
 {
-    glRasterPos2f(
-        x,
-        y
+    // Switch to 2D projection
+    glMatrixMode(
+        GL_PROJECTION
     );
 
+    glPushMatrix();
+
+    glLoadIdentity();
+
+    glOrtho(
+        0,
+        1200,
+        0,
+        750,
+        -1,
+        1
+    );
+
+    glMatrixMode(
+        GL_MODELVIEW
+    );
+
+    glPushMatrix();
+
+    glLoadIdentity();
+
+    // Disable 3D features
+    glDisable(GL_DEPTH_TEST);
+    glDisable(GL_LIGHTING);
+
+
+    // =================================================
+    // PANEL BACKGROUND
+    // =================================================
+
+    glEnable(GL_BLEND);
+
+    glBlendFunc(
+        GL_SRC_ALPHA,
+        GL_ONE_MINUS_SRC_ALPHA
+    );
+
+    glColor4f(
+        0.02f,
+        0.02f,
+        0.06f,
+        0.88f
+    );
+
+    glBegin(GL_QUADS);
+
+    glVertex2f(
+        1010,
+        60
+    );
+
+    glVertex2f(
+        1190,
+        60
+    );
+
+    glVertex2f(
+        1190,
+        650
+    );
+
+    glVertex2f(
+        1010,
+        650
+    );
+
+    glEnd();
+
+
+    // =================================================
+    // PANEL BORDER
+    // =================================================
+
+    glColor3f(
+        0.4f,
+        0.6f,
+        1.0f
+    );
+
+    glLineWidth(2.0f);
+
+    glBegin(GL_LINE_LOOP);
+
+    glVertex2f(
+        1010,
+        60
+    );
+
+    glVertex2f(
+        1190,
+        60
+    );
+
+    glVertex2f(
+        1190,
+        650
+    );
+
+    glVertex2f(
+        1010,
+        650
+    );
+
+    glEnd();
+
+
+    // =================================================
+    // TITLE
+    // =================================================
+
+    glColor3f(
+        1.0f,
+        0.8f,
+        0.2f
+    );
+
+    glRasterPos2f(
+        1030,
+        615
+    );
+
+    const char* title =
+        "CONTROLS";
+
     for (int i = 0;
-         text[i] != '\0';
+         title[i] != '\0';
          i++)
     {
         glutBitmapCharacter(
-            GLUT_BITMAP_HELVETICA_12,
-            text[i]
+            GLUT_BITMAP_HELVETICA_18,
+            title[i]
         );
     }
+
+
+    // =================================================
+    // CONTROL INFORMATION
+    // =================================================
+
+    glColor3f(
+        0.9f,
+        0.9f,
+        0.9f
+    );
+
+    drawScreenText(
+        "W / S  : Zoom",
+        1030,
+        570
+    );
+
+    drawScreenText(
+        "A / D  : Rotate",
+        1030,
+        535
+    );
+
+    drawScreenText(
+        "Arrows : Move",
+        1030,
+        500
+    );
+
+    drawScreenText(
+        "+      : Speed Up",
+        1030,
+        465
+    );
+
+    drawScreenText(
+        "-      : Speed Down",
+        1030,
+        430
+    );
+
+    drawScreenText(
+        "T      : Names ON/OFF",
+        1030,
+        395
+    );
+
+    drawScreenText(
+        "R      : Reset",
+        1030,
+        360
+    );
+
+    drawScreenText(
+        "ESC    : Exit",
+        1030,
+        325
+    );
+
+
+    // =================================================
+    // CURRENT SPEED
+    // =================================================
+
+    char speedText[50];
+
+    sprintf(
+        speedText,
+        "Speed: %.1f",
+        orbitSpeed
+    );
+
+    glColor3f(
+        0.3f,
+        1.0f,
+        0.5f
+    );
+
+    drawScreenText(
+        speedText,
+        1030,
+        280
+    );
+
+
+    // =================================================
+    // PROJECT INFORMATION
+    // =================================================
+
+    glColor3f(
+        0.5f,
+        0.8f,
+        1.0f
+    );
+
+    drawScreenText(
+        "3D SOLAR SYSTEM",
+        1030,
+        240
+    );
+
+    drawScreenText(
+        "Rotation + Scaling",
+        1030,
+        210
+    );
+
+    drawScreenText(
+        "Translation + Mirror",
+        1030,
+        185
+    );
+
+
+    // =================================================
+    // STUDENT IDs
+    // =================================================
+
+    glColor3f(
+        1.0f,
+        0.8f,
+        0.2f
+    );
+
+    drawScreenText(
+        "STUDENT ID",
+        1030,
+        135
+    );
+
+
+    glColor3f(
+        0.9f,
+        0.9f,
+        0.9f
+    );
+
+    drawScreenText(
+        "41230301349",
+        1030,
+        105
+    );
+
+    drawScreenText(
+        "41230301350",
+        1030,
+        80
+    );
+
+
+    // =================================================
+    // RESTORE 3D SETTINGS
+    // =================================================
+
+    glDisable(GL_BLEND);
+
+    glEnable(GL_DEPTH_TEST);
+
+    glEnable(GL_LIGHTING);
+
+    glPopMatrix();
+
+    glMatrixMode(
+        GL_PROJECTION
+    );
+
+    glPopMatrix();
+
+    glMatrixMode(
+        GL_MODELVIEW
+    );
 }
+
 
 // =====================================================
 // 11. RESHAPE
@@ -1035,6 +1340,7 @@ void reshape(
         350.0f
     );
 }
+
 
 // =====================================================
 // LIGHTING
@@ -1172,6 +1478,7 @@ void initLighting()
     );
 }
 
+
 // =====================================================
 // 12. INITIALIZATION
 // =====================================================
@@ -1246,7 +1553,7 @@ int main(
     );
 
     glutKeyboardFunc(
-    keyboard
+        keyboard
     );
 
     glutSpecialFunc(
