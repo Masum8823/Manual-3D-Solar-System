@@ -20,6 +20,53 @@ float moveY = 0.0f;
 
 bool showText = true;
 
+// =====================================================
+// BACKGROUND STARS
+// =====================================================
+
+void drawStars()
+{
+    glDisable(GL_LIGHTING);
+
+    glPointSize(1.5f);
+
+    glBegin(GL_POINTS);
+
+    for (int i = 0;
+         i < 450;
+         i++)
+    {
+        float x =
+            ((i * 37) % 220) - 110;
+
+        float y =
+            ((i * 71) % 170) - 85;
+
+        float z =
+            ((i * 53) % 220) - 110;
+
+        float brightness =
+            0.65f +
+            (i % 4) * 0.1f;
+
+        glColor3f(
+            brightness,
+            brightness,
+            brightness
+        );
+
+        glVertex3f(
+            x,
+            y,
+            z
+        );
+    }
+
+    glEnd();
+
+    glEnable(GL_LIGHTING);
+}
+
 
 // =====================================================
 // 1. CUSTOM SPHERE
@@ -467,6 +514,9 @@ void display()
 
     // 3D Camera
     setupCamera();
+
+    // Stars
+    drawStars();
 
     // Sun
     drawSun();
