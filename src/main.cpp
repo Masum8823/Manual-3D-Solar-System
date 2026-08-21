@@ -12,6 +12,12 @@
 float orbitAngle = 0.0f;
 float orbitSpeed = 0.5f;
 
+float camAngleY = 0.0f;
+float zoom = 60.0f;
+
+float moveX = 0.0f;
+float moveY = 0.0f;
+
 bool showText = true;
 
 
@@ -296,10 +302,7 @@ void drawPlanetManual(
     );
 
 
-    // =================================================
-    // PLANET NAME
-    // =================================================
-
+    // Planet name
     drawText(
         name,
         -size,
@@ -308,15 +311,11 @@ void drawPlanetManual(
     );
 
 
-    // =================================================
-    // SATURN RING
-    // =================================================
-
+    // Saturn ring
     if (hasRing)
     {
         glPushMatrix();
 
-        // Ring tilt
         glRotatef(
             70.0f,
             1.0f,
@@ -364,7 +363,99 @@ void drawSun()
 
 
 // =====================================================
-// 7. DISPLAY
+// 7. CAMERA
+// =====================================================
+
+void setupCamera()
+{
+    glLoadIdentity();
+
+    // Camera backward
+    glTranslatef(
+        0.0f,
+        -moveY,
+        -zoom
+    );
+
+    // Horizontal movement
+    glTranslatef(
+        -moveX,
+        0.0f,
+        0.0f
+    );
+
+    // Camera rotation
+    glRotatef(
+        camAngleY,
+        0.0f,
+        1.0f,
+        0.0f
+    );
+
+    // Slight vertical adjustment
+    glTranslatef(
+        0.0f,
+        -2.0f,
+        0.0f
+    );
+}
+
+
+// =====================================================
+// 8. MANUAL PERSPECTIVE
+// =====================================================
+
+void setupPerspective(
+    float fov,
+    float aspect,
+    float nearPlane,
+    float farPlane
+)
+{
+    float f =
+        1.0f /
+        tan(
+            (fov * PI / 180.0f)
+            / 2.0f
+        );
+
+    float matrix[16] = {0};
+
+    matrix[0] =
+        f / aspect;
+
+    matrix[5] =
+        f;
+
+    matrix[10] =
+        (farPlane + nearPlane) /
+        (nearPlane - farPlane);
+
+    matrix[11] =
+        -1.0f;
+
+    matrix[14] =
+        (2.0f *
+         farPlane *
+         nearPlane) /
+        (nearPlane - farPlane);
+
+    glMatrixMode(
+        GL_PROJECTION
+    );
+
+    glLoadIdentity();
+
+    glMultMatrixf(matrix);
+
+    glMatrixMode(
+        GL_MODELVIEW
+    );
+}
+
+
+// =====================================================
+// 9. DISPLAY
 // =====================================================
 
 void display()
@@ -373,6 +464,9 @@ void display()
         GL_COLOR_BUFFER_BIT |
         GL_DEPTH_BUFFER_BIT
     );
+
+    // 3D Camera
+    setupCamera();
 
     // Sun
     drawSun();
@@ -504,7 +598,7 @@ void display()
 
 
 // =====================================================
-// 8. CONTINUOUS ANIMATION
+// 10. CONTINUOUS ANIMATION
 // =====================================================
 
 void update(int value)
@@ -527,7 +621,39 @@ void update(int value)
 
 
 // =====================================================
-// 9. INITIALIZATION
+// 11. RESHAPE
+// =====================================================
+
+void reshape(
+    int width,
+    int height
+)
+{
+    if (height == 0)
+        height = 1;
+
+    float aspect =
+        (float)width /
+        (float)height;
+
+    glViewport(
+        0,
+        0,
+        width,
+        height
+    );
+
+    setupPerspective(
+        45.0f,
+        aspect,
+        1.0f,
+        350.0f
+    );
+}
+
+
+// =====================================================
+// 12. INITIALIZATION
 // =====================================================
 
 void init()
@@ -542,11 +668,18 @@ void init()
         0.05f,
         1.0f
     );
+
+    setupPerspective(
+        45.0f,
+        1200.0f / 750.0f,
+        1.0f,
+        350.0f
+    );
 }
 
 
 // =====================================================
-// 10. MAIN
+// 13. MAIN
 // =====================================================
 
 int main(
@@ -578,6 +711,10 @@ int main(
 
     glutDisplayFunc(
         display
+    );
+
+    glutReshapeFunc(
+        reshape
     );
 
     glutTimerFunc(
