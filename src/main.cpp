@@ -389,9 +389,18 @@ void drawPlanetManual(
 // 6. SUN
 // =====================================================
 
+// =====================================================
+// SUN
+// Scaling Transformation + Glow
+// =====================================================
+
 void drawSun()
 {
     glDisable(GL_LIGHTING);
+
+    // =================================================
+    // MAIN SUN
+    // =================================================
 
     glColor3f(
         1.0f,
@@ -405,9 +414,46 @@ void drawSun()
         30
     );
 
+
+    // =================================================
+    // SUN GLOW
+    // =================================================
+
+    glEnable(GL_BLEND);
+
+    glBlendFunc(
+        GL_SRC_ALPHA,
+        GL_ONE_MINUS_SRC_ALPHA
+    );
+
+    glColor4f(
+        1.0f,
+        0.55f,
+        0.0f,
+        0.08f
+    );
+
+    glPushMatrix();
+
+    // SCALING
+    glScalef(
+        1.35f,
+        1.35f,
+        1.35f
+    );
+
+    drawCustomSphere(
+        4.5f,
+        20,
+        20
+    );
+
+    glPopMatrix();
+
+    glDisable(GL_BLEND);
+
     glEnable(GL_LIGHTING);
 }
-
 
 // =====================================================
 // 7. CAMERA
