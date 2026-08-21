@@ -123,7 +123,86 @@ void drawManualOrbit(float radius)
 
 
 // =====================================================
-// 3. PLANET TRANSFORMATION SYSTEM
+// 3. CUSTOM SATURN RING
+// =====================================================
+
+void drawCustomRing(float planetSize)
+{
+    float R =
+        planetSize + 1.2f;
+
+    float r =
+        0.18f;
+
+    int majorSegments = 40;
+    int minorSegments = 12;
+
+    for (int i = 0;
+         i < majorSegments;
+         i++)
+    {
+        float theta1 =
+            2.0f * PI * i /
+            majorSegments;
+
+        float theta2 =
+            2.0f * PI * (i + 1) /
+            majorSegments;
+
+        glBegin(GL_QUAD_STRIP);
+
+        for (int j = 0;
+             j <= minorSegments;
+             j++)
+        {
+            float phi =
+                2.0f * PI * j /
+                minorSegments;
+
+            // First point
+            float x1 =
+                (R + r * cos(phi)) *
+                cos(theta1);
+
+            float y1 =
+                r * sin(phi);
+
+            float z1 =
+                (R + r * cos(phi)) *
+                sin(theta1);
+
+            // Second point
+            float x2 =
+                (R + r * cos(phi)) *
+                cos(theta2);
+
+            float y2 =
+                r * sin(phi);
+
+            float z2 =
+                (R + r * cos(phi)) *
+                sin(theta2);
+
+            glVertex3f(
+                x1,
+                y1,
+                z1
+            );
+
+            glVertex3f(
+                x2,
+                y2,
+                z2
+            );
+        }
+
+        glEnd();
+    }
+}
+
+
+// =====================================================
+// 4. PLANET
 // Rotation + Translation
 // =====================================================
 
@@ -133,7 +212,8 @@ void drawPlanetManual(
     float red,
     float green,
     float blue,
-    float speed
+    float speed,
+    bool hasRing = false
 )
 {
     // Orbit path
@@ -170,12 +250,40 @@ void drawPlanetManual(
         20
     );
 
+
+    // =================================================
+    // SATURN RING
+    // =================================================
+
+    if (hasRing)
+    {
+        glPushMatrix();
+
+        // Ring tilt
+        glRotatef(
+            70.0f,
+            1.0f,
+            0.0f,
+            0.0f
+        );
+
+        glColor3f(
+            0.8f,
+            0.65f,
+            0.35f
+        );
+
+        drawCustomRing(size);
+
+        glPopMatrix();
+    }
+
     glPopMatrix();
 }
 
 
 // =====================================================
-// 4. SUN
+// 5. SUN
 // =====================================================
 
 void drawSun()
@@ -199,7 +307,7 @@ void drawSun()
 
 
 // =====================================================
-// 5. DISPLAY
+// 6. DISPLAY
 // =====================================================
 
 void display()
@@ -293,7 +401,8 @@ void display()
         0.7f,
         0.7f,
         0.5f,
-        0.7f
+        0.7f,
+        true
     );
 
 
@@ -330,7 +439,7 @@ void display()
 
 
 // =====================================================
-// 6. CONTINUOUS ANIMATION
+// 7. CONTINUOUS ANIMATION
 // =====================================================
 
 void update(int value)
@@ -353,7 +462,7 @@ void update(int value)
 
 
 // =====================================================
-// 7. INITIALIZATION
+// 8. INITIALIZATION
 // =====================================================
 
 void init()
@@ -372,7 +481,7 @@ void init()
 
 
 // =====================================================
-// 8. MAIN
+// 9. MAIN
 // =====================================================
 
 int main(
