@@ -115,3 +115,34 @@ The Y coordinate remains 0, so the orbit is created on the X-Z plane.
 ### Current Progress
 
 The project now contains a custom 3D sphere with multiple manually generated orbital paths.
+
+---
+
+## Step 04 — Sun and Basic 3D Scene
+
+In this step, the central Sun was organized into a separate drawing function and basic 3D depth handling was introduced.
+
+### Concepts Learned
+
+- Function-based object organization
+- Depth testing
+- Depth buffer
+- Double buffering
+- `GL_DEPTH_TEST`
+- `GLUT_DEPTH`
+- `glutSwapBuffers()`
+- Basic 3D scene structure
+
+### Current Progress
+
+The project now contains:
+
+- A custom 3D sphere
+- A central Sun
+- Multiple manual orbital paths
+- Depth testing
+- Double buffering
+
+The project is now prepared for adding moving planetary objects.
+
+---
