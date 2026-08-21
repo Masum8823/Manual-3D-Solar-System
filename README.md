@@ -56,3 +56,35 @@ At this stage, the project contains only a basic OpenGL window with a dark backg
 No 3D objects or animation have been added yet.
 
 ---
+
+## Step 02 — Custom 3D Sphere
+
+In this step, a custom 3D sphere was implemented without using GLUT's built-in sphere function.
+
+### Concepts Learned
+
+- Spherical coordinate system
+- Latitude and longitude
+- Trigonometric functions
+- 3D vertex generation
+- `GL_QUAD_STRIP`
+- Surface normals
+- Mathematical construction of 3D objects
+
+### Sphere Generation
+
+The sphere vertices are calculated using:
+
+x = cos(latitude) × cos(longitude)
+
+y = cos(latitude) × sin(longitude)
+
+z = sin(latitude)
+
+The calculated coordinates are then multiplied by the sphere radius.
+
+### Current Progress
+
+The project now contains a mathematically generated 3D sphere.
+
+---
