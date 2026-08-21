@@ -559,3 +559,74 @@ The project now contains:
 - Lighting
 - Material properties
 - Continuous animation
+
+---
+
+## Step 14 — Keyboard and Interactive Camera Controls
+
+In this step, keyboard interaction was added to control the camera, animation speed, planet labels, and application state.
+
+### Concepts Learned
+
+- Keyboard event handling
+- Normal keyboard callbacks
+- Special keyboard callbacks
+- Interactive camera control
+- Zoom control
+- Camera rotation
+- Object animation speed control
+- Reset functionality
+- Program exit handling
+
+### Normal Keyboard
+
+`glutKeyboardFunc()` is used for normal keys such as:
+
+- W / S
+- A / D
+- T
+- R
+- + / -
+- ESC
+
+### Special Keyboard
+
+`glutSpecialFunc()` is used for arrow keys.
+
+### Controls
+
+| Key | Function |
+|-----|----------|
+| W / S | Zoom |
+| A / D | Camera Rotation |
+| Arrow Keys | Camera Movement |
+| + | Increase Speed |
+| - | Decrease Speed |
+| T | Toggle Planet Names |
+| R | Reset |
+| ESC | Exit |
+
+### Current Progress
+
+The project now contains:
+
+- Custom 3D sphere
+- Surface normals
+- Eight animated planets
+- Manual orbital paths
+- Central Sun
+- Sun glow
+- Scaling transformation
+- Mirroring transformation
+- Custom Saturn ring
+- Planet names
+- 3D camera
+- Manual perspective projection
+- Background star field
+- Lighting
+- Material properties
+- Interactive keyboard controls
+- Camera movement and zoom
+- Animation speed control
+- Reset functionality
+- Continuous animation
