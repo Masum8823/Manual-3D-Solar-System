@@ -88,3 +88,30 @@ The calculated coordinates are then multiplied by the sphere radius.
 The project now contains a mathematically generated 3D sphere.
 
 ---
+
+## Step 03 — Manual Orbital Paths
+
+In this step, manual circular orbital paths were added using mathematical equations.
+
+### Concepts Learned
+
+- Circle equation
+- Trigonometric functions
+- `GL_LINE_LOOP`
+- X-Z plane
+- Manual geometric path generation
+- Reusable drawing functions
+
+### Orbit Generation
+
+The orbital path is generated using:
+
+x = r × cos(θ)
+
+z = r × sin(θ)
+
+The Y coordinate remains 0, so the orbit is created on the X-Z plane.
+
+### Current Progress
+
+The project now contains a custom 3D sphere with multiple manually generated orbital paths.
