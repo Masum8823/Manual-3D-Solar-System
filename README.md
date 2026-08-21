@@ -188,3 +188,42 @@ The project now contains:
 - Continuous animation
 
 ---
+
+## Step 06 — Add All Eight Planets
+
+In this step, all eight planets were added using the reusable planetary transformation function.
+
+### Planets Added
+
+1. Mercury
+2. Venus
+3. Earth
+4. Mars
+5. Jupiter
+6. Saturn
+7. Uranus
+8. Neptune
+
+### Concepts Learned
+
+- Function reusability
+- Parameterized 3D objects
+- Different object sizes
+- Different object colors
+- Different orbital distances
+- Different animation speeds
+- Multiple transformed objects
+
+### Planet Parameters
+
+Each planet is defined using:
+
+- Orbital distance
+- Planet size
+- RGB color
+- Orbital speed
+
+### Current Progress
+
+The project now contains a complete set of eight animated planets orbiting the central Sun.
+---
