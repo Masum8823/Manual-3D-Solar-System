@@ -116,14 +116,13 @@ void drawManualOrbit(float radius)
 
 
 // =====================================================
-// 3. DISPLAY
+// 3. SUN
 // =====================================================
 
-void display()
+void drawSun()
 {
-    glClear(GL_COLOR_BUFFER_BIT);
+    glDisable(GL_LIGHTING);
 
-    // Center sphere
     glColor3f(
         1.0f,
         0.55f,
@@ -136,6 +135,24 @@ void display()
         30
     );
 
+    glEnable(GL_LIGHTING);
+}
+
+
+// =====================================================
+// 4. DISPLAY
+// =====================================================
+
+void display()
+{
+    glClear(
+        GL_COLOR_BUFFER_BIT |
+        GL_DEPTH_BUFFER_BIT
+    );
+
+    // Sun
+    drawSun();
+
 
     // Orbital paths
     drawManualOrbit(8.0f);
@@ -144,16 +161,20 @@ void display()
     drawManualOrbit(20.0f);
 
 
-    glFlush();
+    glutSwapBuffers();
 }
 
 
 // =====================================================
-// 4. INITIALIZATION
+// 5. INITIALIZATION
 // =====================================================
 
 void init()
 {
+    glEnable(
+        GL_DEPTH_TEST
+    );
+
     glClearColor(
         0.0f,
         0.0f,
@@ -164,7 +185,7 @@ void init()
 
 
 // =====================================================
-// 5. MAIN
+// 6. MAIN
 // =====================================================
 
 int main(
@@ -178,8 +199,9 @@ int main(
     );
 
     glutInitDisplayMode(
-        GLUT_SINGLE |
-        GLUT_RGB
+        GLUT_DOUBLE |
+        GLUT_RGB |
+        GLUT_DEPTH
     );
 
     glutInitWindowSize(
