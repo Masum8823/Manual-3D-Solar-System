@@ -456,6 +456,57 @@ void drawSun()
 }
 
 // =====================================================
+// MIRRORING
+// Scaling -1 on Y-axis
+// =====================================================
+
+void drawReflection()
+{
+    glPushMatrix();
+
+    // MIRRORING
+    glScalef(
+        1.0f,
+        -1.0f,
+        1.0f
+    );
+
+    glTranslatef(
+        0.0f,
+        20.0f,
+        0.0f
+    );
+
+    glEnable(GL_BLEND);
+
+    glBlendFunc(
+        GL_SRC_ALPHA,
+        GL_ONE_MINUS_SRC_ALPHA
+    );
+
+    glDisable(GL_LIGHTING);
+
+    glColor4f(
+        1.0f,
+        0.7f,
+        0.1f,
+        0.10f
+    );
+
+    drawCustomSphere(
+        4.5f,
+        20,
+        20
+    );
+
+    glEnable(GL_LIGHTING);
+
+    glDisable(GL_BLEND);
+
+    glPopMatrix();
+}
+
+// =====================================================
 // 7. CAMERA
 // =====================================================
 
@@ -688,6 +739,11 @@ void display()
         "Neptune"
     );
 
+    // =================================================
+    // MIRRORING
+    // =================================================
+
+    drawReflection();
 
     glutSwapBuffers();
 }
