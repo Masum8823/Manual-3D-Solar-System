@@ -5,8 +5,9 @@
 
 #define PI 3.14159265358979323846
 
+
 // =====================================================
-// CUSTOM SPHERE
+// 1. CUSTOM SPHERE
 // =====================================================
 
 void drawCustomSphere(float radius, int stacks, int slices)
@@ -69,10 +70,60 @@ void drawCustomSphere(float radius, int stacks, int slices)
     }
 }
 
+
+// =====================================================
+// 2. CUSTOM ORBIT
+// x = r cos(theta)
+// z = r sin(theta)
+// =====================================================
+
+void drawManualOrbit(float radius)
+{
+    glDisable(GL_LIGHTING);
+
+    glColor3f(
+        0.25f,
+        0.27f,
+        0.32f
+    );
+
+    glLineWidth(1.0f);
+
+    glBegin(GL_LINE_LOOP);
+
+    for (int i = 0; i < 360; i++)
+    {
+        float theta =
+            i * PI / 180.0f;
+
+        float x =
+            radius * cos(theta);
+
+        float z =
+            radius * sin(theta);
+
+        glVertex3f(
+            x,
+            0.0f,
+            z
+        );
+    }
+
+    glEnd();
+
+    glEnable(GL_LIGHTING);
+}
+
+
+// =====================================================
+// 3. DISPLAY
+// =====================================================
+
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
 
+    // Center sphere
     glColor3f(
         1.0f,
         0.55f,
@@ -85,8 +136,21 @@ void display()
         30
     );
 
+
+    // Orbital paths
+    drawManualOrbit(8.0f);
+    drawManualOrbit(12.0f);
+    drawManualOrbit(16.0f);
+    drawManualOrbit(20.0f);
+
+
     glFlush();
 }
+
+
+// =====================================================
+// 4. INITIALIZATION
+// =====================================================
 
 void init()
 {
@@ -97,6 +161,11 @@ void init()
         1.0f
     );
 }
+
+
+// =====================================================
+// 5. MAIN
+// =====================================================
 
 int main(
     int argc,
