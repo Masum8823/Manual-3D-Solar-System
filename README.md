@@ -410,3 +410,89 @@ The glow sphere is scaled using:
 
 ```cpp
 glScalef(1.35f, 1.35f, 1.35f);
+
+```
+
+This makes the second sphere 35% larger than the original Sun.
+
+### Blending
+
+Alpha blending is used to make the larger sphere transparent
+
+```cpp
+glEnable(GL_BLEND);
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+```
+
+This creates a simple Sun glow effect without using textures.
+
+### Current Progress
+
+The project now contains:
+
+- Custom 3D sphere
+- Eight animated planets
+- Manual orbital paths
+- Central Sun
+- Sun glow
+- Scaling transformation
+- Custom Saturn ring
+- Planet names
+- 3D camera
+- Manual perspective projection
+- Background star field
+- Continuous animation
+
+---
+
+## Step 12 — Mirroring / Reflection Transformation
+
+In this step, a reflection effect was implemented using negative scaling.
+
+### Concepts Learned
+
+- Mirroring transformation
+- Reflection
+- Negative scaling
+- Y-axis transformation
+- Transformation matrix
+- `glScalef()`
+- `glPushMatrix()`
+- `glPopMatrix()`
+
+### Mirroring Technique
+
+The reflection is created using:
+
+```cpp
+glScalef(1.0f, -1.0f, 1.0f);
+```
+
+The negative Y-axis scale flips the object vertically.
+
+### Matrix Stack
+
+`glPushMatrix()` is used before applying the reflection transformation and glPopMatrix() is used afterward.
+
+This keeps the reflection transformation isolated from the rest of the scene.
+
+### Current Progress
+
+The project now contains:
+
+- Custom 3D sphere
+- Eight animated planets
+- Manual orbital paths
+- Central Sun
+- Sun glow
+- Scaling transformation
+- Mirroring / reflection transformation
+- Custom Saturn ring
+- Planet names
+- 3D camera
+- Manual perspective projection
+- Background star field
+- Continuous animation
+
+---
