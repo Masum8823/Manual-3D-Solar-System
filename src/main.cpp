@@ -12,6 +12,8 @@
 float orbitAngle = 0.0f;
 float orbitSpeed = 0.5f;
 
+bool showText = true;
+
 
 // =====================================================
 // 1. CUSTOM SPHERE
@@ -123,7 +125,49 @@ void drawManualOrbit(float radius)
 
 
 // =====================================================
-// 3. CUSTOM SATURN RING
+// 3. 3D TEXT
+// =====================================================
+
+void drawText(
+    const char* text,
+    float x,
+    float y,
+    float z
+)
+{
+    if (!showText)
+        return;
+
+    glDisable(GL_LIGHTING);
+
+    glColor3f(
+        1.0f,
+        1.0f,
+        1.0f
+    );
+
+    glRasterPos3f(
+        x,
+        y,
+        z
+    );
+
+    for (int i = 0;
+         text[i] != '\0';
+         i++)
+    {
+        glutBitmapCharacter(
+            GLUT_BITMAP_HELVETICA_12,
+            text[i]
+        );
+    }
+
+    glEnable(GL_LIGHTING);
+}
+
+
+// =====================================================
+// 4. CUSTOM SATURN RING
 // =====================================================
 
 void drawCustomRing(float planetSize)
@@ -202,8 +246,8 @@ void drawCustomRing(float planetSize)
 
 
 // =====================================================
-// 4. PLANET
-// Rotation + Translation
+// 5. PLANET
+// Rotation + Translation + Text
 // =====================================================
 
 void drawPlanetManual(
@@ -213,6 +257,7 @@ void drawPlanetManual(
     float green,
     float blue,
     float speed,
+    const char* name,
     bool hasRing = false
 )
 {
@@ -252,6 +297,18 @@ void drawPlanetManual(
 
 
     // =================================================
+    // PLANET NAME
+    // =================================================
+
+    drawText(
+        name,
+        -size,
+        size + 0.7f,
+        0.0f
+    );
+
+
+    // =================================================
     // SATURN RING
     // =================================================
 
@@ -283,7 +340,7 @@ void drawPlanetManual(
 
 
 // =====================================================
-// 5. SUN
+// 6. SUN
 // =====================================================
 
 void drawSun()
@@ -307,7 +364,7 @@ void drawSun()
 
 
 // =====================================================
-// 6. DISPLAY
+// 7. DISPLAY
 // =====================================================
 
 void display()
@@ -331,7 +388,8 @@ void display()
         0.7f,
         0.7f,
         0.7f,
-        4.0f
+        4.0f,
+        "Mercury"
     );
 
 
@@ -345,7 +403,8 @@ void display()
         0.9f,
         0.5f,
         0.2f,
-        3.0f
+        3.0f,
+        "Venus"
     );
 
 
@@ -359,7 +418,8 @@ void display()
         0.2f,
         0.4f,
         1.0f,
-        2.0f
+        2.0f,
+        "Earth"
     );
 
 
@@ -373,7 +433,8 @@ void display()
         1.0f,
         0.2f,
         0.0f,
-        1.5f
+        1.5f,
+        "Mars"
     );
 
 
@@ -387,7 +448,8 @@ void display()
         0.8f,
         0.6f,
         0.4f,
-        1.0f
+        1.0f,
+        "Jupiter"
     );
 
 
@@ -402,6 +464,7 @@ void display()
         0.7f,
         0.5f,
         0.7f,
+        "Saturn",
         true
     );
 
@@ -416,7 +479,8 @@ void display()
         0.4f,
         0.7f,
         1.0f,
-        0.5f
+        0.5f,
+        "Uranus"
     );
 
 
@@ -430,7 +494,8 @@ void display()
         0.2f,
         0.2f,
         1.0f,
-        0.3f
+        0.3f,
+        "Neptune"
     );
 
 
@@ -439,7 +504,7 @@ void display()
 
 
 // =====================================================
-// 7. CONTINUOUS ANIMATION
+// 8. CONTINUOUS ANIMATION
 // =====================================================
 
 void update(int value)
@@ -462,7 +527,7 @@ void update(int value)
 
 
 // =====================================================
-// 8. INITIALIZATION
+// 9. INITIALIZATION
 // =====================================================
 
 void init()
@@ -481,7 +546,7 @@ void init()
 
 
 // =====================================================
-// 9. MAIN
+// 10. MAIN
 // =====================================================
 
 int main(
